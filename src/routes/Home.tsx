@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+import withAuth from '../components/HOC/withAuth';
 import { supabaseClient } from '../supabaseClient';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const signOut = async () => {
     await supabaseClient.auth.signOut();
+    await navigate('/sign-in');
   };
 
   return (
@@ -13,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withAuth(Home);

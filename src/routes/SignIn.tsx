@@ -2,12 +2,10 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { supabaseClient } from '../supabaseClient';
 
 const SignIn = () => {
   const [session, setSession] = useState<Session | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     supabaseClient.auth.getSession().then(({ data: { session } }) => {
@@ -34,8 +32,6 @@ const SignIn = () => {
       </div>
     );
   }
-
-  navigate('/');
 };
 
 export default SignIn;
